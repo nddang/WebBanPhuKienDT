@@ -2,6 +2,7 @@
 *{
 	margin:0;
 	padding:0;
+	font-family: Arial;
 }
 .clear{
 	clear:both;
@@ -17,7 +18,7 @@
 }
 .foot{
 	text-align:center ;
-	line-height:120px;
+	line-height:30px;
 	color:#fff;
 	font-size:24px;
 }
@@ -34,13 +35,20 @@
 	padding-left:10px;
 }
 .menu ul li{
-	float:left;
-	line-height:40px;
-	text-align:center;
-	width:80px;
-	height:40px;
+	float: left;
+    line-height: 40px;
+    text-align: center;
+    width: auto;
+    height: 40px;
+    padding: inherit;
 }
 .menu ul li a{
+	text-decoration:none;
+	color:#fff;
+	font-size:18px;
+	display:block;
+}
+.menu ul li p{
 	text-decoration:none;
 	color:#fff;
 	font-size:18px;
@@ -62,31 +70,6 @@
 	float:left;
 	margin-top:2px;
 }
-.hangmoi {
-	width:100%;
-	height:auto;
-	text-align:center;
-	list-style:none;
-}
-.hangmoi li{
-	width:100%;
-	height:auto;
-	border-bottom:1px dashed #30C;
-	margin:auto;
-}
-.hangmoi li:hover{
-	background:#C40C42;
-	
-}
-.hangmoi a{
-	text-decoration:none;
-	display:block;
-}
-.hangmoi p{
-	padding:5px;
-	color:skyblue;
-	font-weight:bold;
-}
 
 .tieude{
 	width:auto;
@@ -98,6 +81,26 @@
 	color:#fff;
 	line-height:40px;
 }
+.search_bar{
+	width:100%;
+	float: right;
+}
+
+.search_bar input[type=text] {
+    padding: 6px;
+    margin-top: 8px;
+}
+
+.search_bar button {
+  float: right;
+  padding: 6px;
+  margin-top: 8px;
+  margin-right: 16px;
+  background: #ddd;
+  border: none;
+  cursor: pointer;
+}
+
 .box_list{
 	width:98%;
 	height:auto;
@@ -162,13 +165,19 @@
 }
 .product p{
 	padding-top:2px;
-	color:#000;
 	font-size:18px;
-	
+	color: red;
+	font-weight: bold;
+	border: 1px solid #d9d9d9;
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 35px;
+	margin-bottom: 5px;
 }
 .footer{
 	width:100%;
-	height:120px;
+	height:auto;
 	border:1px solid #000;
 	background:#C40C42;
 	margin-top:5px;
@@ -176,28 +185,14 @@
 /* chi tiet san pham*/
 .box_chitietsp{
 	width:98%;
-	height:300px;
+	height:250px;
 	margin:2px;
 }
 .box_hinhanh{
 	width:35%;
-	height:300px;
+	height:250px;
 	float:left;
 }
-.hinhanhphongto{
-	width:100%;
-	height:100px;
-	list-style:none;
-}
-.hinhanhphongto li{
-	width:70px;
-	height:70px;
-	float:left;
-	margin-left:5px;
-	border:1px solid #CCC;
-}
-
-
 .box_info{
 	width:64%;
 	height:300px;
@@ -208,40 +203,25 @@
 .box_info p{
 	margin:10px;
 }
+.button_mua{
+	margin: 10px;
+	width: 100px; 
+	height: 40px; 
+	background: #9F6; 
+	color: #000; 
+	font-size: 18px; 
+	border-radius: 8px;
+	cursor: pointer;
+}
+
 .box_detail{
 	width:100%;
 	height:400px;
-	
-	
-	
 }
-.button_dathang{
-	width:200px;
-	height:40px;
-	border:1px solid #000;
-	border-radius:25px;
-	margin:10px;
-	margin-top:40px;
-	
-}
-.button_dathang p{
-	font-size:20px;
-	font-weight:bold;
-	text-align:center;
-	line-height:40px;
-}
-.button_dathang  a{
-	color:#0C9;
-	text-decoration:none;
-	display:block;
-}
-.button_dathang:hover{
-	background:#C40C42;
-}
+
 .sanphamlienquan{
 	width:100%;
-	height:250px;
-	
+	height:auto;
 }
 .sanphamlienquan ul {
 	width:auto;
@@ -257,7 +237,18 @@
 }
 .sanphamlienquan a{
 	text-decoration:none;
-	color:skyblue;
+}
+.sanphamlienquan p{
+	padding-top:2px;
+	font-size:18px;
+	color: black;
+	font-weight: bold;
+	border: 1px solid #d9d9d9;
+	width: 150px;
+	height: 30px;
+	line-height: 30px;
+	margin-left: 35px;
+	margin-bottom: 5px;
 }
 .hinhanhsp{
 	width:100%;
@@ -272,30 +263,42 @@
 .hinhanhsp li{
 	text-align:center;
 }
+.pagination {
+  display: inline-block;
+  float: right;
+}
+
+.pagination a {
+  color: black;
+  float: left;
+  padding: 8px 16px;
+  text-decoration: none;
+  border: 1px solid #ddd;
+}
+
+
 /*Gio hang*/
 .box_giohang{
 	width:98%;
 	height:auto;
 	margin:2px;
 }
-.button_capnhapgiohang{
-	width:150px;
-	height:40px;
-	line-height:40px;
-	border:1px solid #000;
-	border-radius:25px;
-	margin:5px;
-	float:right;
+.button_edit{
+	border: none;
+  	background: none;
+  	cursor: pointer;
 }
-.button_capnhapgiohang:hover{
-	background:#0C3;
+.button_dathang button{
+	width: 100px;
+    height: 30px;
+    background: #9F6;
+    cursor: pointer;
+    display: math;
 }
-.button_capnhapgiohang a{
-	display:block;
-	color:red;
-	font-size:18px;
-	text-decoration:none;
+.button_dathang tr td{
+	padding:5px;
 }
+
 .control p{
 	font-size:18px;
 	color:skyblue;
@@ -329,20 +332,7 @@
 	width:100%;
 	height:20px;
 }
-.ghichu textarea{
-	width:100%;
-	height:60px;
-}
-.ghichu p{
-	margin:5px;
-	text-decoration:underline;
-}
-.button_gui{
-	width:100px;
-	height:100px;
-	border:1px solid #000;
-	border:25px;
-}
+/**/
 .tabs_panel ul{
 	list-style-type:none;
 }
@@ -354,7 +344,6 @@
 	border-radius:10px 10px 0 0;
 	color:#fff;
 	font-weight:200;
-	cursor:pointer;
 }
 .tabs_panel ul li.active{
 	color:#000;

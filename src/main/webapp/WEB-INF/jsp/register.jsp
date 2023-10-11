@@ -1,16 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<head>
 <script type="text/javascript" src="/resources/js/PhoneNumber.js"></script>
-<meta charset="UTF-8">
-<title>Dang ky</title>
-</head>
-<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ
-	KIỆN</div>
+
+<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ KIỆN</div>
+<c:if test="${mess!=null}">
 <div class="thongbao">
 	<p>${mess}</p>
 </div>
+</c:if>
 <div class="dangky">
 	<p style="font-size: 18px; color: red; margin: 5px;">Các mục dấu *
 		là bắt buộc tối thiểu. Vui lòng điền đầy đủ và chính xác (Số nhà, Ngõ,
@@ -46,10 +43,7 @@
 			<tr>
 				<td colspan="2">
 					<p>
-						<strong>${mess}</strong>
-					</p>
-					<p>
-						<input type="submit" value="Đăng kí" />
+						<input style="cursor: pointer;" type="submit" value="Đăng kí" />
 					</p>
 				</td>
 			</tr>

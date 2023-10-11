@@ -2,6 +2,14 @@
     pageEncoding="UTF-8"%>
 
 <div class="box_list">
+	<div class="tieude">
+	<div class="search_bar">
+		<form action="/home/search?name" method="get">
+			<input type="text" placeholder="Nhập tên sản phẩm.." name="name">
+			<button type="submit">Search</button>
+		</form>
+	</div>
+	</div>
     <div class="tieude">
         <h3>Loại phụ kiện</h3>
     </div>
@@ -12,16 +20,6 @@
    	</ul>
 </div><!--Ket thuc div box loai phu kien -->
 
-<div class="box_list">
-    <div class="tieude">
-        <h3>Hàng mới</h3>
-    </div>
-    
-    <ul class="hangmoi">	
-       	<c:forEach var="newproduct" items="${listNewP}">
-       		<li>${newproduct}</li>
-		</c:forEach>
-    </ul>
-</div><!--Ket thuc div box hang moi-->
+
 
 

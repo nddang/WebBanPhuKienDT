@@ -28,11 +28,20 @@
 				<c:if test="${content=='detailproduct'}">
 					<%@ include file="detailproduct.jsp"%>
 				</c:if>
+				<c:if test="${content=='search'}">
+					<%@ include file="search.jsp"%>
+				</c:if>
 				<c:if test="${content=='category'}">
 					<%@ include file="category.jsp"%>
 				</c:if>
 				<c:if test="${content=='cart'}">
 					<%@ include file="cart.jsp"%>
+				</c:if>
+				<c:if test="${content=='history'}">
+					<%@ include file="history.jsp"%>
+				</c:if>
+				<c:if test="${content=='detailhistory'}">
+					<%@ include file="detailhistory.jsp"%>
 				</c:if>
 			</div>
 			<div class="clear"></div>

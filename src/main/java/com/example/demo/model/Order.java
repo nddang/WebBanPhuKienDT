@@ -1,12 +1,12 @@
 package com.example.demo.model;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
 import jakarta.persistence.Table;
 
 @Entity
@@ -16,13 +16,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne
-    @MapsId("id")
-    @JoinColumn(name = "cartId")
-    private Cart cart;
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "billId")
+    private Bill bill;
 
-    @ManyToOne
-    @MapsId("id")
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "prdId")
     private Product product;
 	
@@ -36,12 +34,12 @@ public class Order {
 		this.id = id;
 	}
 
-	public Cart getCart() {
-		return cart;
+	public Bill getBill() {
+		return bill;
 	}
 
-	public void setCart(Cart cart) {
-		this.cart = cart;
+	public void setBill(Bill bill) {
+		this.bill = bill;
 	}
 
 	public Product getProduct() {
@@ -59,4 +57,5 @@ public class Order {
 	public void setNumberProduct(long numberProduct) {
 		this.numberProduct = numberProduct;
 	}
+	
 }

@@ -1,15 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<head>
-<meta charset="UTF-8">
-<title>Danh Sach sp</title>
-</head>
 <div class="tieude">Chi tiết sản phẩm</div>
 
 <div class="box_chitietsp">
 	<div class="box_hinhanh">
-		<img src="${product.imgurl}" data-zoom-image="#" width="250"
-			height="250" />
+		<img src="${product.imgurl}"  width="200" height="200" />
 	</div>
 
 	<div class="box_info">
@@ -27,10 +22,9 @@
 					<strong> Tình trạng:</strong> Còn hàng
 				</p>
 				<p>
-					<strong>Số lượng:</strong> ${product.number}
+					<strong>Số lượng còn trong kho:</strong> ${product.number}
 				</p>
-				<input type="submit" name="add_to_cart" value="Mua hàng"
-					style="margin: 10px; width: 100px; height: 40px; background: #9F6; color: #000; font-size: 18px; border-radius: 8px;" />
+				<input class="button_mua" type="submit" name="add_to_cart" value="Mua hàng" />
 			</c:if>
 			<c:if test="${product.number<=0}">
 				<p style="color: red;">
@@ -60,23 +54,26 @@
 </div>
 
 <div class="sanphamlienquan">
-	<div class="tieude">Sản phẩm liên quan</div>
+	<div class="tieude">Sản phẩm tương tự</div>
 	<c:if test="${sameproduct!=null}">
-		<c:forEach var="sameP" items="${sameproduct}">
-			<c:if test="${sameP.id!=product.id}">
-				<ul>
+		<ul>
+			<c:forEach var="sameP" items="${sameproduct}">
+				<c:if test="${sameP.id!=product.id}">
 					<li><a href="/detailproduct/${sameP.id}"> <img src="<c:out value="${sameP.imgurl}" />" width="150" height="150" />
-						<p>Tên sp : <c:out value="${sameP.name}" /></p>
+						<p> <c:out value="${sameP.name}" /></p>
 						<p style="color: red;">Giá : <c:out value="${sameP.price}" />$</p>
 					</a></li>
-				</ul>
-			</c:if>
-		</c:forEach>
-	</c:if>
-	<c:if test="${sameproduct==nul}">
-		<p style="padding: 30px;">Hiện chưa có thêm sản phẩm nào</p>
+				</c:if>
+			</c:forEach>
+					<li><a href="/category/${product.category.id}"> <img src="/resources/imgs/bacham.jpg" width="150" height="150" />
+						<p>Xem thêm</p>
+					</a></li>
+		</ul>
 	</c:if>
 </div>
+	<c:if test="${sameproduct==null}">
+		<p style="padding: 30px;">Hiện chưa có thêm sản phẩm nào</>
+	</c:if>
 <!-- Ket thuc box sp liên quan -->
 
 <div class="clear"></div>

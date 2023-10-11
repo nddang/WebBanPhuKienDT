@@ -23,8 +23,12 @@ public class CustomerController {
 	
 	@RequestMapping("/login")
 	public String showLogin(ModelMap model,HttpServletRequest request) {
-		model.addAttribute("content","login");
-		return "home";
+		HttpSession session = request.getSession() ;
+		if(session.getAttribute("customer")==null) {
+			model.addAttribute("content","login");
+			return "home";
+		}
+		else return "redirect:/home";
 	}
 	
 	@RequestMapping("/register")

@@ -1,14 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<head>
-<meta charset="UTF-8">
-<title>Dang nhap</title>
-</head>
-<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ
-	KIỆN</div>
+
+<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ KIỆN</div>
+
+<c:if test="${mess!=null}">
 <div class="thongbao">
 	<p>${mess}</p>
 </div>
+</c:if>
 
 <div class="dangky">
 	<form action="/login" method="post">
@@ -23,7 +22,7 @@
 			<tr>
 				<td colspan="2">
 					<p>
-						<input type="submit" value="Đăng nhập" />
+						<input style="cursor: pointer;" type="submit" value="Đăng nhập" />
 					</p>
 				</td>
 			</tr>
@@ -31,5 +30,5 @@
 	</form>
 </div>
 <h3>
-	<a href="/register"style="text-decoration: none; color: #FFF; margin: 10px; border-radius: 10px; padding: 5px;; background: #F00; float: right;">Đăngký tài khoản để mua hàng.</a>
+	<a href="/register"style="text-decoration: none; color: #FFF; margin: 10px; border-radius: 10px; padding: 5px;; background: #F00; float: right;">Đăng ký tài khoản để mua hàng.</a>
 </h3>
