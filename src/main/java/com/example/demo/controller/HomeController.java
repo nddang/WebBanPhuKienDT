@@ -39,6 +39,7 @@ public class HomeController {
         model.addAttribute("listP", page.getContent());
         model.addAttribute("pagenumber", 1);
         model.addAttribute("lastpage", page.getTotalPages());
+        
 		return "home";
 	}
 	

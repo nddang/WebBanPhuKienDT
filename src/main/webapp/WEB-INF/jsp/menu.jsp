@@ -11,7 +11,7 @@
 		<%} %>
         <%if(session.getAttribute("customer") != null){%>
 		<li><a href="/logout">Đăng xuất</a></li>
-		<li style="float: right; margin-right:20px"><p>Xin chào <strong>${customer.name}</strong></p></li>
+		<li style="float: right; margin-right:20px"><p>Xin chào: <strong>${customer.name}</strong></p></li>
 		<%} %>
     </ul>
 </div>

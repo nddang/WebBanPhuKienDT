@@ -4,7 +4,11 @@
 <%@ page import="com.example.demo.model.Order" %>
 <%if(session.getAttribute("customer") != null){%>
 <div class="tieude">Giỏ hàng của bạn | <span>Xin chào bạn: <strong><em>${customer.name}</em></strong></div>
-
+<c:if test="${mess!=null}">
+<div class="thongbao">
+	<p style="color:green">${mess}</p>
+</div>
+</c:if>
 <div class="box_giohang">
 	<%if(session.getAttribute("listorder") != null){%>
 		<table width="100%" border="1" style="border-collapse: collapse; margin: 5px; text-align: center;">

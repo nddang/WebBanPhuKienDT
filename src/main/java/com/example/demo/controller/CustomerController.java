@@ -45,8 +45,8 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/register")
-	public String register(ModelMap model,HttpServletRequest request,@RequestParam String name, @RequestParam String username, @RequestParam String password, @RequestParam String location,@RequestParam String phone){
-		Optional<Customer> customer = customerrepository.findByUsername(username);
+	public String register(ModelMap model,HttpServletRequest request,@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String location,@RequestParam String phone){
+		Optional<Customer> customer = customerrepository.findByEmail(email);
         if (!customer.isEmpty()) {
         	model.addAttribute("content", "register");
             model.addAttribute("mess", "Tài khoản đã tồn tại");
@@ -56,19 +56,19 @@ public class CustomerController {
 		newcus.setName(name);
 		newcus.setLocation(location);
 		newcus.setPhoneNumber(phone);
-		newcus.setUsername(username);
+		newcus.setEmail(email);
 		newcus.setPassword(password);
 		customerrepository.save(newcus);
         
-		Customer new_customer_login = customerrepository.findByUsernameAndPassword(username, password);
+		Customer new_customer_login = customerrepository.findByEmailAndPassword(email, password);
         HttpSession session = request.getSession() ;
         session.setAttribute("customer", new_customer_login);
         return "redirect:/home";
     }	
 	
 	@PostMapping("/login")
-	public String login(ModelMap model,HttpServletRequest request, @RequestParam String username, @RequestParam String password){
-		Customer customer = customerrepository.findByUsernameAndPassword(username, password);
+	public String login(ModelMap model,HttpServletRequest request, @RequestParam String email, @RequestParam String password){
+		Customer customer = customerrepository.findByEmailAndPassword(email, password);
         if (customer==null) {
         	model.addAttribute("content", "login");
             model.addAttribute("mess", "Thông tin đăng nhập sai");

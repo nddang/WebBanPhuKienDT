@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<script type="text/javascript" src="/resources/js/PhoneNumber.js"></script>
+<script type="text/javascript" src="/resources/js/Email.js"></script>
 
 <div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ KIỆN</div>
 <c:if test="${mess!=null}">
@@ -13,7 +13,7 @@
 		là bắt buộc tối thiểu. Vui lòng điền đầy đủ và chính xác (Số nhà, Ngõ,
 		thôn xóm/ấp, Phường/xã, huyện/quận, tỉnh, TP)</p>
 	<form name="formRegister" action="register" method="post"
-		onsubmit="return validatePhoneNumber(document.formRegister.phone)">
+		onsubmit="return validate(document.formRegister.email,document.formRegister.phone)">
 		<table width="100%" border="1" style="border-collapse: collapse;">
 			<tr>
 				<td width="40%">Họ tên người mua <strong style="color: red;">(*)</strong></td>
@@ -21,8 +21,8 @@
 					required></td>
 			</tr>
 			<tr>
-				<td>Tài khoản <strong style="color: red;"> (*)</strong></td>
-				<td width="60%"><input type="text" name="username" size="50"
+				<td>Email <strong style="color: red;"> (*)</strong></td>
+				<td width="60%"><input type="text" name="email" size="50"
 					required></td>
 			</tr>
 			<tr>

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.demo.model.Bill;
 import com.example.demo.model.Customer;
@@ -146,7 +147,7 @@ public class CartController {
 	}
 	
 	@PostMapping("/cart/save")
-	public String deleteProduct(ModelMap model,HttpServletRequest request,@RequestParam String shipmentplace) {
+	public String deleteProduct(ModelMap model,RedirectAttributes redirectAttributes,HttpServletRequest request,@RequestParam String shipmentplace) {
 		HttpSession session = request.getSession() ;
 		model.addAttribute("content", "cart");
 		
@@ -176,6 +177,7 @@ public class CartController {
 		}
 		
 		session.removeAttribute("listorder");
+		redirectAttributes.addFlashAttribute("mess", "Đặt hàng thành công.");
 		
 		return "redirect:/cart";
 	}

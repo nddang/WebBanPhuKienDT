@@ -1,9 +1,6 @@
 package com.example.demo.controller;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -49,7 +46,8 @@ public class BillController {
         	Customer customer=(Customer) session.getAttribute("customer");
         	List<Bill> listbill=billrepository.findByCustomerId(customer.getId());
         	
-        	session.setAttribute("listbill", listbill);
+        	if(listbill.size()>0) session.setAttribute("listbill", listbill);
+        	
         	return "home";
         }
         
@@ -62,7 +60,7 @@ public class BillController {
         	return "home";
         }
         else {
-        	Customer customer=(Customer) session.getAttribute("customer");
+        	
         	Bill bill=billrepository.findById(id);
         	List<Order> listorder=orderrepository.findByBillId(id);
         	

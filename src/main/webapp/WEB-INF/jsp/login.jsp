@@ -13,8 +13,8 @@
 	<form action="/login" method="post">
 		<table width="100%" border="1" style="border-collapse: collapse;">
 			<tr>
-				<td width="40%">Tài Khoản : <strong style="color: red;">(*)</strong></td>
-				<td width="60%"><input type="text" name="username" size="50"required></td>
+				<td width="40%">Email : <strong style="color: red;">(*)</strong></td>
+				<td width="60%"><input type="text" name="email" size="50"required></td>
 			</tr>
 				<td>Mật khẩu : <strong style="color: red;"> (*)</strong></td>
 				<td width="60%"><input type="password" name="password" size="50"required></td>
