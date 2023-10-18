@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,6 +26,7 @@ public class Product {
 	
 	private double price;
 	
+	@Column(length = 1000)
 	private String des;
 	
 	private String imgurl;
@@ -35,6 +37,10 @@ public class Product {
 	@ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "categoryId")
     private Category category;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "phoneId")
+    private Phone phone;
 
 	public long getId() {
 		return id;
@@ -98,6 +104,14 @@ public class Product {
 
 	public void setOrder(List<Order> order) {
 		this.order = order;
+	}
+
+	public Phone getPhone() {
+		return phone;
+	}
+
+	public void setPhone(Phone phone) {
+		this.phone = phone;
 	}
 	
 }

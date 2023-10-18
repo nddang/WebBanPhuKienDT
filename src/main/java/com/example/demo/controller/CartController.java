@@ -1,9 +1,7 @@
 package com.example.demo.controller;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,11 +9,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.demo.model.Bill;
-import com.example.demo.model.Customer;
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
 import com.example.demo.repository.BillRepository;
@@ -146,39 +140,4 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
-	@PostMapping("/cart/save")
-	public String deleteProduct(ModelMap model,RedirectAttributes redirectAttributes,HttpServletRequest request,@RequestParam String shipmentplace) {
-		HttpSession session = request.getSession() ;
-		model.addAttribute("content", "cart");
-		
-		List<Order> listorder = (List<Order>) session.getAttribute("listorder");
-		Customer customer=(Customer) session.getAttribute("customer");
-		
-		Bill newbill= new Bill();
-		Optional<Customer> c = customerrepository.findById(customer.getId());
-		newbill.setCustomer(c.get());
-		newbill.setPaymentStatus("Chưa thanh toán");
-		newbill.setShipmentPlace(shipmentplace);
-		newbill.setCreatedAt(LocalDateTime.now());
-		newbill=billrepository.save(newbill);
-	
-		for(Order x: listorder) {
-			Order neworder=new Order();
-			neworder.setBill(newbill);
-			neworder.setProduct(productrepository.findById(x.getProduct().getId()));
-			neworder.setNumberProduct(x.getNumberProduct());
-			orderrepository.save(neworder);
-		}
-		
-		for(Order x: listorder) {
-			Product product= productrepository.findById(x.getProduct().getId());
-			product.setNumber(product.getNumber()-x.getNumberProduct());
-			productrepository.save(product);
-		}
-		
-		session.removeAttribute("listorder");
-		redirectAttributes.addFlashAttribute("mess", "Đặt hàng thành công.");
-		
-		return "redirect:/cart";
-	}
 }

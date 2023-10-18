@@ -11,15 +11,15 @@ import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name="category")
-public class Category {
+@Table(name="phone")
+public class Phone {
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "category",cascade =  CascadeType.ALL )
+	@OneToMany(mappedBy = "phone",cascade =  CascadeType.ALL )
 	private List < Product > product;
 	
 	

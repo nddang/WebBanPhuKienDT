@@ -34,6 +34,9 @@
 				<c:if test="${content=='category'}">
 					<%@ include file="category.jsp"%>
 				</c:if>
+				<c:if test="${content=='categoryphone'}">
+					<%@ include file="categoryphone.jsp"%>
+				</c:if>
 				<c:if test="${content=='cart'}">
 					<%@ include file="cart.jsp"%>
 				</c:if>

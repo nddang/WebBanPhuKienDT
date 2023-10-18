@@ -44,7 +44,7 @@ public class BillController {
         else {
         	
         	Customer customer=(Customer) session.getAttribute("customer");
-        	List<Bill> listbill=billrepository.findByCustomerId(customer.getId());
+        	List<Bill> listbill=billrepository.findByCustomerIdOrderByCreatedAtDesc(customer.getId());
         	
         	if(listbill.size()>0) session.setAttribute("listbill", listbill);
         	
@@ -64,8 +64,14 @@ public class BillController {
         	Bill bill=billrepository.findById(id);
         	List<Order> listorder=orderrepository.findByBillId(id);
         	
+			double tongtien=0;
+			for(Order x: listorder) {
+				tongtien+=x.getProduct().getPrice()*x.getNumberProduct();
+			}
+			
         	model.addAttribute("bill", bill);
-        	session.setAttribute("listorder", listorder);
+        	model.addAttribute("listorder", listorder);
+        	model.addAttribute("tongtien",tongtien);
         	return "home";
         }
         

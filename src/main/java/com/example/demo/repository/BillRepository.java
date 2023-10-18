@@ -10,6 +10,6 @@ public interface BillRepository extends JpaRepository<Bill, Long> {
 
 	Bill findById(long id);
 	
-	List<Bill> findByCustomerId(long id);
+	List<Bill> findByCustomerIdOrderByCreatedAtDesc(long id);
 
 }

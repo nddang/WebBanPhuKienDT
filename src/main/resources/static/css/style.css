@@ -164,16 +164,20 @@
 	background:#C40C42;
 }
 .product p{
-	padding-top:2px;
-	font-size:18px;
-	color: red;
-	font-weight: bold;
-	border: 1px solid #d9d9d9;
-	width: 150px;
-	height: 30px;
-	line-height: 30px;
-	margin-left: 35px;
-	margin-bottom: 5px;
+	-webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    color: red;
+    font-weight: bold;
+    border: 1px solid #d9d9d9;
+    width: 150px;
+    height: auto;
+    line-height: 30px;
+    margin-left: 35px;
+    margin-bottom: 5px;
 }
 .footer{
 	width:100%;
@@ -239,16 +243,22 @@
 	text-decoration:none;
 }
 .sanphamlienquan p{
-	padding-top:2px;
-	font-size:18px;
-	color: black;
-	font-weight: bold;
-	border: 1px solid #d9d9d9;
-	width: 150px;
-	height: 30px;
-	line-height: 30px;
-	margin-left: 35px;
-	margin-bottom: 5px;
+	padding-top: 2px;
+    font-size: 16px;
+    color: black;
+    font-weight: bold;
+    border: 1px solid #d9d9d9;
+    width: 150px;
+    height: auto;
+    line-height: 30px;
+    margin-left: 35px;
+    margin-bottom: 5px;
+    
+    -webkit-line-clamp: 2;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 .hinhanhsp{
 	width:100%;

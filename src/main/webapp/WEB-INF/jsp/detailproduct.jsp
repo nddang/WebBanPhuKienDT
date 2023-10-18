@@ -15,7 +15,7 @@
 			</p>
 			<p>
 				<strong>Giá bán:</strong><span style="color: red;">${product.price}
-					$</span>
+					VND</span>
 			</p>
 			<c:if test="${product.number>0}">
 				<p style="color: blue;">
@@ -58,12 +58,10 @@
 	<c:if test="${sameproduct!=null}">
 		<ul>
 			<c:forEach var="sameP" items="${sameproduct}">
-				<c:if test="${sameP.id!=product.id}">
-					<li><a href="/detailproduct/${sameP.id}"> <img src="<c:out value="${sameP.imgurl}" />" width="150" height="150" />
-						<p> <c:out value="${sameP.name}" /></p>
-						<p style="color: red;">Giá : <c:out value="${sameP.price}" />$</p>
-					</a></li>
-				</c:if>
+				<li><a href="/detailproduct/${sameP.id}"> <img src="<c:out value="${sameP.imgurl}" />" width="150" height="150" />
+					<p> <c:out value="${sameP.name}" /></p>
+					<p style="color: red;">Giá : <c:out value="${sameP.price}" /> VND</p>
+				</a></li>			
 			</c:forEach>
 					<li><a href="/category/${product.category.id}"> <img src="/resources/imgs/bacham.jpg" width="150" height="150" />
 						<p>Xem thêm</p>

@@ -24,7 +24,7 @@
 			<tr>
 				<td> ${order.product.name} </td>
 				<td><img src="${order.product.imgurl}" width="100" height="100" /></td>
-				<td> ${order.product.price} $</td>
+				<td> ${order.product.price} VND</td>
 				<td>
 					<form action="/cart/plus/${order.product.id}" method="post">
 						<button class="button_edit"><img src="/resources/imgs/plus.png" width="10" height="10"></button>
@@ -36,7 +36,7 @@
 				</td>
 				<td>
 					
-					<c:out value="${order.numberProduct*order.product.price}"/>
+					<c:out value="${order.numberProduct*order.product.price}"/> VND
 				</td>
 				<td>
 					<form action="/cart/delete/${order.product.id}" method="post">
@@ -59,13 +59,13 @@
 					}
 					out.print(tongtien);
 				%>
-				 $ </td>
+				 VND </td>
 				<td colspan="4">
 				</td>
 			</tr>
 		</table>
 		<div class="button_dathang">
-			<form action="/cart/save" method="post">
+			<form action="/create_payment" method="post">
 				<table>
 				<tr>
 					<td>Địa chỉ nhận hàng<strong style="color: red;"> (*)</strong></td>

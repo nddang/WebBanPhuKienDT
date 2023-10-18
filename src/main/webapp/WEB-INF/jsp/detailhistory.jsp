@@ -26,9 +26,9 @@
 			<tr>
 				<td>${order.product.name}</td>
 				<td><img src="${order.product.imgurl}" width="100" height="100" /></td>
-				<td>${order.product.price} $</td>
+				<td>${order.product.price} VND</td>
 				<td> ${order.numberProduct}</td>
-				<td><c:out value="${order.numberProduct*order.product.price}" /></td>
+				<td><c:out value="${order.numberProduct*order.product.price}" /> VND</td>
 			</tr>
 			<tr></tr>
 		</c:forEach>
@@ -36,14 +36,7 @@
 		<tr>
 			<td colspan="3"></td>
 
-			<td>Thành tiền : <%
-					List<Order> listorder = (List<Order>) session.getAttribute("listorder");
-					double tongtien=0;
-					for(Order x: listorder) {
-						tongtien+=x.getProduct().getPrice()*x.getNumberProduct();
-					}
-					out.print(tongtien);
-				%> $
+			<td>Thành tiền : ${tongtien} VND
 			</td>
 			<td colspan="4"></td>
 		</tr>

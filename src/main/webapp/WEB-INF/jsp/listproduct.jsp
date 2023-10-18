@@ -10,7 +10,7 @@
 					<c:out value="${product.name}" />
 				</p>
 				<p>
-					<c:out value="${product.price}" /> $
+					<c:out value="${product.price}" /> VND
 				</p>
 		</a></li>
 	</ul>

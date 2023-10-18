@@ -7,7 +7,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Customer;
 import com.example.demo.repository.CustomerRepository;
@@ -45,30 +44,31 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/register")
-	public String register(ModelMap model,HttpServletRequest request,@RequestParam String name, @RequestParam String email, @RequestParam String password, @RequestParam String location,@RequestParam String phone){
-		Optional<Customer> customer = customerrepository.findByEmail(email);
+	public String register(ModelMap model,HttpServletRequest request){
+		Optional<Customer> customer = customerrepository.findByEmail(request.getParameter("email"));
         if (!customer.isEmpty()) {
         	model.addAttribute("content", "register");
             model.addAttribute("mess", "Tài khoản đã tồn tại");
             return "home";
         }
         Customer newcus= new Customer();
-		newcus.setName(name);
-		newcus.setLocation(location);
-		newcus.setPhoneNumber(phone);
-		newcus.setEmail(email);
-		newcus.setPassword(password);
+		newcus.setName(request.getParameter("name"));
+		newcus.setLocation(request.getParameter("location"));
+		newcus.setPhoneNumber(request.getParameter("phone"));
+		newcus.setEmail(request.getParameter("email"));
+		newcus.setPassword(request.getParameter("password"));
 		customerrepository.save(newcus);
         
-		Customer new_customer_login = customerrepository.findByEmailAndPassword(email, password);
+		Customer new_customer_login = customerrepository.findByEmailAndPassword(request.getParameter("email"), request.getParameter("password"));
         HttpSession session = request.getSession() ;
         session.setAttribute("customer", new_customer_login);
+        
         return "redirect:/home";
     }	
 	
 	@PostMapping("/login")
-	public String login(ModelMap model,HttpServletRequest request, @RequestParam String email, @RequestParam String password){
-		Customer customer = customerrepository.findByEmailAndPassword(email, password);
+	public String login(ModelMap model,HttpServletRequest request){
+		Customer customer = customerrepository.findByEmailAndPassword(request.getParameter("email"), request.getParameter("password"));
         if (customer==null) {
         	model.addAttribute("content", "login");
             model.addAttribute("mess", "Thông tin đăng nhập sai");

@@ -18,6 +18,14 @@
        		<li><a href="/category/${category.id}"><c:out value="${category.name}" /></a></li>
 		</c:forEach>
    	</ul>
+   	<div class="tieude">
+        <h3>Phụ kiện điện thoại</h3>
+    </div>
+    <ul class="list">
+        <c:forEach var="phone" items="${listPhone}">
+       		<li><a href="/category/phone/${phone.id}"><c:out value="${phone.name}" /></a></li>
+		</c:forEach>
+   	</ul>
 </div><!--Ket thuc div box loai phu kien -->
 
 
