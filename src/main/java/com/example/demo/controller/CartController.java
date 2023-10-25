@@ -26,14 +26,14 @@ public class CartController {
 	@Autowired
 	ProductRepository productrepository;
 	
-	@Autowired
-	BillRepository billrepository;
+//	@Autowired
+//	BillRepository billrepository;
 	
-	@Autowired
-	OrderRepository orderrepository;
+//	@Autowired
+//	OrderRepository orderrepository;
 	
-	@Autowired
-	CustomerRepository customerrepository;
+//	@Autowired
+//	CustomerRepository customerrepository;
 	
 	@RequestMapping("/cart")
 	public String showCart(ModelMap model) {
