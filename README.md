@@ -7,4 +7,6 @@ Back- end: Java, Spring Boot,JPA
 
 DataBase:  XAMPP, MySQL
 
-Chạy project và vào link: http://localhost:8080/home
+Trang bán hàng: http://localhost:8080/home
+
+Trang Admin: http://localhost:8080/admin/home
