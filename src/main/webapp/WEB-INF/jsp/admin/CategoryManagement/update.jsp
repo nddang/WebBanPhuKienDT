@@ -6,7 +6,7 @@
 <div class="button_themsp">
 	<a href="/admin/category/add">Thêm loại mới</a> 
 </div>
-<form action="/admin/category/update" method="post" enctype="multipart/form-data">
+<form action="/admin/category/update/${category.id}" method="post" enctype="multipart/form-data">
 	<h3>&nbsp;</h3>
 	<table width="200" border="1">
 		<tr>
@@ -14,8 +14,8 @@
 		</tr>
 		<tr>
 			<td width="97">Tên loại</td>
-			<td width="87"><input type="text" name="hieusp"
-				value="ten"></td>
+			<td width="87"><input type="text" name="name"
+				value="${category.name}"></td>
 		</tr>
 		
 		<tr>

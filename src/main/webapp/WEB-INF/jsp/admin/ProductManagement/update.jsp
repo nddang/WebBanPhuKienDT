@@ -6,7 +6,7 @@
 <div class="button_themsp">
 	<a href="/admin/product/add">Thêm phụ kiện mới</a> 
 </div>
-<form action="/admin/product/update" method="post" enctype="multipart/form-data">
+<form action="/admin/product/update/${product.id}" method="post" enctype="multipart/form-data">
 	<h3>&nbsp;</h3>
 	<table width="600" border="1">
 		<tr>
@@ -14,41 +14,53 @@
 		</tr>
 		<tr>
 			<td width="97">Tên phụ kiện</td>
-			<td width="87"><input type="text" name="tensp"
-				value="ten"></td>
+			<td width="87"><input type="text" name="name"
+				value="${product.name}"></td>
 		</tr>
 		<tr>
 			<td>Hình ảnh</td>
-			<td><input type="file" name="hinhanh" /><img
-				src="#"
+			<td><input type="file" name="imgurl" /><img
+				src="${product.imgurl}"
 				width="80" height="80"></td>
 		</tr>
 		<tr>
 			<td>Giá</td>
-			<td><input type="number" step="any" name="gia" min="0"
-				value="100"></td>
+			<td><input type="number" step="any" name="price" min="0"
+				value="${product.price}"></td>
 		</tr>
 		<tr>
 			<td>Mô tả</td>
-			<td><textarea name="noidung" cols="40" rows="10">mô tả</textarea></td>
+			<td><textarea name="des" cols="40" rows="10">${product.des}</textarea></td>
 		</tr>
 		<tr>
 			<td>Số lượng</td>
-			<td><input type="number" name="soluong" min="1"
-				value="1"></td>
+			<td><input type="number" name="number" min="1"
+				value="${product.number}"></td>
 		</tr>
 		<tr>
 			<td>Loại</td>
 			<td><select name="loaisp">
-				<option selected="selected" value="1">ten 1</option>
-				<option value="2">ten 2</option>
+			<c:forEach var="category" items="${listC}">
+				<c:if test="${product.category.id==category.id}">
+				<option selected="selected" value="${category.id}">${category.name}</option>
+				</c:if>
+				<c:if test="${product.category.id!=category.id}">
+				<option value="${category.id}">${category.name}</option>
+				</c:if>
+			</c:forEach>
 			</select></td>
 		</tr>
 		<tr>
 			<td>Phụ kiện điện thoại</td>
-			<td><select name="loaisp">
-				<option selected="selected" value="1">ten 1</option>
-				<option value="2">ten 2</option>
+			<td><select name="loaidt">
+				<c:forEach var="phone" items="${listPhone}">
+				<c:if test="${product.phone.id==phone.id}">
+				<option selected="selected" value="${phone.id}">${phone.name}</option>
+				</c:if>
+				<c:if test="${product.phone.id!=phone.id}">
+				<option value="${phone.id}">${phone.name}</option>
+				</c:if>
+			</c:forEach>
 			</select></td>
 		</tr>
 		<tr>

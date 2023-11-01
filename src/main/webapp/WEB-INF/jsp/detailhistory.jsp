@@ -36,7 +36,7 @@
 		<tr>
 			<td colspan="3"></td>
 
-			<td>Thành tiền : ${tongtien} VND
+			<td>Thành tiền : ${bill.totalPrice} VND
 			</td>
 			<td colspan="4"></td>
 		</tr>

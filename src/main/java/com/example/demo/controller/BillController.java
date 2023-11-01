@@ -63,15 +63,8 @@ public class BillController {
         	
         	Bill bill=billrepository.findById(id);
         	List<Order> listorder=orderrepository.findByBillId(id);
-        	
-			double tongtien=0;
-			for(Order x: listorder) {
-				tongtien+=x.getProduct().getPrice()*x.getNumberProduct();
-			}
-			
         	model.addAttribute("bill", bill);
         	model.addAttribute("listorder", listorder);
-        	model.addAttribute("tongtien",tongtien);
         	return "home";
         }
         

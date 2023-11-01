@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import java.io.Serializable;
 import java.util.List;
 
 import jakarta.persistence.CascadeType;
@@ -12,7 +13,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name="phone")
-public class Phone {
+public class Phone implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7265086923705154593L;
+
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
