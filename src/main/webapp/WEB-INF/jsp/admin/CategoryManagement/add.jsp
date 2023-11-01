@@ -11,7 +11,7 @@
 		</tr>
 		<tr>
 			<td width="97">Tên loại</td>
-			<td width="87"><input type="text" name="ten"></td>
+			<td width="87"><input type="text" name="name"></td>
 		</tr>
 		<tr>
 			<td colspan="2">

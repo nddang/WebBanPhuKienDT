@@ -137,6 +137,8 @@ public class PaymentController {
 			newbill.setShipmentPlace((String)session.getAttribute("shipmentplace"));
 			newbill.setCreatedAt(LocalDateTime.now());
 			newbill.setPaymentAt(LocalDateTime.now());
+			double amount=Integer.parseInt(request.getParameter("vnp_Amount"));
+			newbill.setTotalPrice(amount/100);
 			newbill=billrepository.save(newbill);
 		
 			for(Order x: listorder) {

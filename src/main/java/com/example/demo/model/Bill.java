@@ -43,7 +43,7 @@ public class Bill {
 	@OneToMany(mappedBy = "bill",cascade =  CascadeType.ALL )
 	private List < Order > order;
 
-	
+	private double totalPrice;	
 
 	public long getId() {
 		return id;
@@ -100,4 +100,13 @@ public class Bill {
 	public void setShipmentPlace(String shipmentPlace) {
 		this.shipmentPlace = shipmentPlace;
 	}
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+	
 }
