@@ -10,7 +10,8 @@
 					<c:out value="${product.name}" />
 				</p>
 				<p>
-					<c:out value="${product.price}" /> VND
+					<c:out value="${product.price}" />
+					VND
 				</p>
 		</a></li>
 	</ul>
@@ -19,17 +20,17 @@
 <div class="pagination">
 	<a href="/home/page/1"> << </a>
 	<c:if test="${pagenumber>1}">
-	<a href="/home/page/${pagenumber-1}"> < </a>
+		<a href="/home/page/${pagenumber-1}"> < </a>
 	</c:if>
 	<c:if test="${pagenumber-1<1}">
-	<a href="/home/page/1"> < </a>
+		<a href="/home/page/1"> < </a>
 	</c:if>
 	<a>${pagenumber}</a>
 	<c:if test="${pagenumber+1>lastpage}">
-	<a href="/home/page/${lastpage}"> > </a>
+		<a href="/home/page/${lastpage}"> > </a>
 	</c:if>
 	<c:if test="${pagenumber<lastpage}">
-	<a href="/home/page/${pagenumber+1}"> > </a>
+		<a href="/home/page/${pagenumber+1}"> > </a>
 	</c:if>
 	<a href="/home/page/${lastpage}"> >> </a>
 </div>

@@ -39,7 +39,9 @@ public class CustomerController {
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		session.invalidate();
+		session.removeAttribute("customer");
+		session.removeAttribute("listorder");
+		session.removeAttribute("listbill");
 		return "redirect:/home";
 	}
 	

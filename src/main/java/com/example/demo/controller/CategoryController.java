@@ -57,7 +57,7 @@ public class CategoryController {
 	public String showCategoryPhone(ModelMap model,@PathVariable("id") long id) {
 		model.addAttribute("content","categoryphone");
 		Phone phone= phonerepository.findById(id);
-		Page<Product> page= productrepository.findByPhoneId(id, PageRequest.of(0, 6));
+		Page<Product> page= productrepository.findByPhonenameContaining(phone.getName(), PageRequest.of(0, 6));
 		
 		model.addAttribute("category", phone);
 		model.addAttribute("listP", page.getContent());
@@ -70,7 +70,7 @@ public class CategoryController {
 	public String showCategoryPhonePage(ModelMap model,@PathVariable("id") long id,@PathVariable("pagenumber") int pagenumber) {
 		model.addAttribute("content","categoryphone");
 		Phone phone= phonerepository.findById(id);
-		Page<Product> page= productrepository.findByPhoneId(id, PageRequest.of(pagenumber-1, 6));
+		Page<Product> page= productrepository.findByPhonenameContaining(phone.getName(), PageRequest.of(pagenumber-1, 6));
 
 		model.addAttribute("category", phone);
 		model.addAttribute("listP", page.getContent());

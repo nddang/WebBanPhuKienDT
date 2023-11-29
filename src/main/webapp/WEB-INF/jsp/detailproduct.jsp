@@ -4,7 +4,7 @@
 
 <div class="box_chitietsp">
 	<div class="box_hinhanh">
-		<img src="${product.imgurl}"  width="200" height="200" />
+		<img src="${product.imgurl}" width="200" height="200" />
 	</div>
 
 	<div class="box_info">
@@ -24,7 +24,8 @@
 				<p>
 					<strong>Số lượng còn trong kho:</strong> ${product.number}
 				</p>
-				<input class="button_mua" type="submit" name="add_to_cart" value="Mua hàng" />
+				<input class="button_mua" type="submit" name="add_to_cart"
+					value="Mua hàng" />
 			</c:if>
 			<c:if test="${product.number<=0}">
 				<p style="color: red;">
@@ -58,20 +59,28 @@
 	<c:if test="${sameproduct!=null}">
 		<ul>
 			<c:forEach var="sameP" items="${sameproduct}">
-				<li><a href="/detailproduct/${sameP.id}"> <img src="<c:out value="${sameP.imgurl}" />" width="150" height="150" />
-					<p> <c:out value="${sameP.name}" /></p>
-					<p style="color: red;">Giá : <c:out value="${sameP.price}" /> VND</p>
-				</a></li>			
+				<li><a href="/detailproduct/${sameP.id}"> <img
+						src="<c:out value="${sameP.imgurl}" />" width="150" height="150" />
+						<p>
+							<c:out value="${sameP.name}" />
+						</p>
+						<p style="color: red;">
+							Giá :
+							<c:out value="${sameP.price}" />
+							VND
+						</p>
+				</a></li>
 			</c:forEach>
-					<li><a href="/category/${product.category.id}"> <img src="/resources/imgs/bacham.jpg" width="150" height="150" />
-						<p>Xem thêm</p>
-					</a></li>
+			<li><a href="/category/${product.category.id}"> <img
+					src="/resources/imgs/bacham.jpg" width="150" height="150" />
+					<p>Xem thêm</p>
+			</a></li>
 		</ul>
 	</c:if>
 </div>
-	<c:if test="${sameproduct==null}">
-		<p style="padding: 30px;">Hiện chưa có thêm sản phẩm nào</>
-	</c:if>
+<c:if test="${sameproduct==null}">
+	<p style="padding: 30px;">Hiện chưa có thêm sản phẩm nào</>
+</c:if>
 <!-- Ket thuc box sp liên quan -->
 
 <div class="clear"></div>

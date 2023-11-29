@@ -1,14 +1,12 @@
 package com.example.demo.model;
 
 import java.io.Serializable;
-import java.util.List;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+
 import jakarta.persistence.Table;
 
 @Entity
@@ -25,9 +23,6 @@ public class Phone implements Serializable{
 	
 	private String name;
 	
-	@OneToMany(mappedBy = "phone",cascade =  CascadeType.ALL )
-	private List < Product > product;
-	
 	
 	public long getId() {
 		return id;
@@ -43,14 +38,6 @@ public class Phone implements Serializable{
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public List<Product> getProduct() {
-		return product;
-	}
-
-	public void setProduct(List<Product> product) {
-		this.product = product;
 	}
 	
 }
