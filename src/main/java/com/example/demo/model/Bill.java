@@ -24,7 +24,7 @@ public class Bill {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "cusId")
     private Customer customer;
 	
@@ -39,6 +39,8 @@ public class Bill {
     private LocalDateTime paymentAt;
 	
 	private String shipmentPlace;
+	
+	private String shipmentStatus;
 	
 	@OneToMany(mappedBy = "bill",cascade =  CascadeType.ALL )
 	private List < Order > order;
@@ -99,6 +101,14 @@ public class Bill {
 
 	public void setShipmentPlace(String shipmentPlace) {
 		this.shipmentPlace = shipmentPlace;
+	}
+
+	public String getShipmentStatus() {
+		return shipmentStatus;
+	}
+
+	public void setShipmentStatus(String shipmentStatus) {
+		this.shipmentStatus = shipmentStatus;
 	}
 
 	public double getTotalPrice() {

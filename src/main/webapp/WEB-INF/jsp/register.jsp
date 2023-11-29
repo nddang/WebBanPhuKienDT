@@ -2,11 +2,12 @@
 	pageEncoding="UTF-8"%>
 <script type="text/javascript" src="/resources/js/Email.js"></script>
 
-<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ KIỆN</div>
+<div class="tieude">HOAN NGHÊNH QUÝ BẠN ĐẶT HÀNG TẠI XƯỞNG PHỤ
+	KIỆN</div>
 <c:if test="${mess!=null}">
-<div class="thongbao">
-	<p>${mess}</p>
-</div>
+	<div class="thongbao">
+		<p>${mess}</p>
+	</div>
 </c:if>
 <div class="dangky">
 	<p style="font-size: 18px; color: red; margin: 5px;">Các mục dấu *
@@ -51,5 +52,7 @@
 	</form>
 </div>
 <h3>
-	<a href="/login"style="text-decoration: none; color: #FFF; margin: 10px; border-radius: 10px; padding: 5px;; background: #F00; float: right;">Đăng nhập</a>
+	<a href="/login"
+		style="text-decoration: none; color: #FFF; margin: 10px; border-radius: 10px; padding: 5px;; background: #F00; float: right;">Đăng
+		nhập</a>
 </h3>

@@ -45,15 +45,14 @@ public class BillController {
         	
         	Customer customer=(Customer) session.getAttribute("customer");
         	List<Bill> listbill=billrepository.findByCustomerIdOrderByCreatedAtDesc(customer.getId());
-        	
-        	if(listbill.size()>0) session.setAttribute("listbill", listbill);
+        	if(listbill.size()>0)session.setAttribute("listbill", listbill);
         	
         	return "home";
         }
         
 	}   
 	@RequestMapping("/history/detail/{id}")
-	public String showHistory(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
+	public String showHistoryDetail(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
 		HttpSession session = request.getSession() ;
 		model.addAttribute("content","detailhistory");
         if(session.getAttribute("customer")==null) {

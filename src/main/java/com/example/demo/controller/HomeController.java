@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -36,7 +37,8 @@ public class HomeController {
 	@RequestMapping("/home")
 	public String home(ModelMap model,HttpServletRequest request) {
 		List<Category> listCategory= categoryrepository.findAll();
-		List<Phone> listPhone=phonerepository.findAll();
+		Sort sort = Sort.by(Sort.Direction.ASC, "name");
+		List<Phone> listPhone=phonerepository.findAll(sort);
 		Page<Product> page= productrepository.findAll(PageRequest.of(0, 6));
 		
 		HttpSession session = request.getSession() ;

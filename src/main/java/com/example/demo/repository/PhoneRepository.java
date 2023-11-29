@@ -6,4 +6,5 @@ import com.example.demo.model.Phone;
 
 public interface PhoneRepository extends JpaRepository<Phone, Long>{
 	Phone findById(long id);
+
 }

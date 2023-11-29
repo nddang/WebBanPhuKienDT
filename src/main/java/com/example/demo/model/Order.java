@@ -1,6 +1,5 @@
 package com.example.demo.model;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,11 +15,11 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "billId")
     private Bill bill;
 
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name = "prdId")
     private Product product;
 	

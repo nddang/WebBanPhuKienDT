@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th10 18, 2023 lúc 05:27 AM
+-- Thời gian đã tạo: Th10 29, 2023 lúc 06:47 AM
 -- Phiên bản máy phục vụ: 10.4.22-MariaDB
 -- Phiên bản PHP: 7.4.27
 
@@ -33,19 +33,21 @@ CREATE TABLE `bill` (
   `payment_at` datetime(6) DEFAULT NULL,
   `payment_status` varchar(255) DEFAULT NULL,
   `shipment_place` varchar(255) DEFAULT NULL,
-  `cus_id` bigint(20) DEFAULT NULL
+  `cus_id` bigint(20) DEFAULT NULL,
+  `total_price` double NOT NULL,
+  `shipment_status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `bill`
 --
 
-INSERT INTO `bill` (`id`, `created_at`, `payment_at`, `payment_status`, `shipment_place`, `cus_id`) VALUES
-(22, '2023-10-17 20:52:07.000000', '2023-10-17 20:52:07.000000', 'Đã thanh toán', 'Thọ Khê-Đông Thọ-Yên Phong-Bắc Ninh', 8),
-(23, '2023-10-17 20:54:16.000000', '2023-10-17 20:54:16.000000', 'Đã thanh toán', 'Thọ Khê-Đông Thọ-Yên Phong-Bắc Ninh', 8),
-(24, '2023-10-17 20:57:40.000000', '2023-10-17 20:57:40.000000', 'Đã thanh toán', 'Thọ Khê-Đông Thọ-Yên Phong-Bắc Ninh', 8),
-(25, '2023-10-17 21:00:35.000000', '2023-10-17 21:00:35.000000', 'Đã thanh toán', 'Thọ Khê-Đông Thọ-Yên Phong-Bắc Ninh', 8),
-(26, '2023-10-17 21:14:07.000000', '2023-10-17 21:14:07.000000', 'Đã thanh toán', 'Phùng Koang - Nam Từ Niêm - Hà Nội', 8);
+INSERT INTO `bill` (`id`, `created_at`, `payment_at`, `payment_status`, `shipment_place`, `cus_id`, `total_price`, `shipment_status`) VALUES
+(33, '2023-11-23 07:40:26.000000', '2023-11-23 07:40:26.000000', 'Đã thanh toán', 'Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà Nội', 9, 100000, 'Đã nhận'),
+(34, '2023-11-29 10:33:15.000000', '2023-11-29 12:36:46.000000', 'Đã thanh toán', 'Phùng Koang - Nam Từ Niêm - Hà Nội', 9, 100000, 'Đã nhận'),
+(35, '2023-11-29 10:37:53.000000', NULL, 'Chưa thanh toán', 'Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà Nội', 9, 100000, 'Đang giao'),
+(36, '2023-11-29 10:43:18.000000', NULL, 'Chưa thanh toán', 'Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà Nội', 9, 100000, 'Chưa giao'),
+(37, '2023-11-29 11:34:19.000000', NULL, 'Chưa thanh toán', 'Km10, Đường Nguyễn Trãi, Q.Hà Đông, Hà Nội', 9, 100000, 'Chưa giao');
 
 -- --------------------------------------------------------
 
@@ -63,10 +65,11 @@ CREATE TABLE `category` (
 --
 
 INSERT INTO `category` (`id`, `name`) VALUES
-(1, 'tai nghe'),
-(2, 'sac'),
-(3, 'man hinh'),
-(4, 'pin');
+(1, 'Tai nghe'),
+(2, 'Sạc'),
+(3, 'Màn hình'),
+(4, 'Pin'),
+(5, 'Ốp lưng - Bao da');
 
 -- --------------------------------------------------------
 
@@ -89,7 +92,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`id`, `location`, `name`, `password`, `phone_number`, `email`) VALUES
 (1, 'Bắc Ninh', 'dang', '14112001', '0123456789', 'n.d.dang1411@gmail.com'),
-(8, 'Bắc Ninh', 'nguyen duc dang', '1234', '0123456789', 'dang@gmail.com');
+(9, 'Bắc Ninh', 'dang', '1234', '0123456789', 'dang@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -109,13 +112,11 @@ CREATE TABLE `order_product` (
 --
 
 INSERT INTO `order_product` (`id`, `number_product`, `prd_id`, `bill_id`) VALUES
-(29, 1, 1, 22),
-(30, 1, 1, 23),
-(31, 1, 2, 23),
-(32, 7, 1, 24),
-(33, 6, 2, 24),
-(34, 4, 3, 25),
-(35, 1, 5, 26);
+(43, 1, 1, 33),
+(44, 1, 2, 34),
+(45, 1, 2, 35),
+(46, 1, 1, 36),
+(47, 1, 7, 37);
 
 -- --------------------------------------------------------
 
@@ -133,8 +134,17 @@ CREATE TABLE `phone` (
 --
 
 INSERT INTO `phone` (`id`, `name`) VALUES
-(1, 'iPhone'),
-(2, 'Samsung');
+(1, 'Samsung Galaxy S21'),
+(2, 'Samsung Galaxy S22'),
+(3, 'iPhone 7'),
+(4, 'iPhone 8'),
+(5, 'Samsung Galaxy A53'),
+(6, 'Samsung Galaxy M53'),
+(7, 'iPhone 11'),
+(8, 'iPhone 12'),
+(9, 'iPhone 13'),
+(10, 'iPhone 14'),
+(11, 'iPhone 15');
 
 -- --------------------------------------------------------
 
@@ -144,28 +154,30 @@ INSERT INTO `phone` (`id`, `name`) VALUES
 
 CREATE TABLE `product` (
   `id` bigint(20) NOT NULL,
-  `des` varchar(1000) DEFAULT NULL,
+  `des` varchar(2000) DEFAULT NULL,
   `imgurl` varchar(255) DEFAULT NULL,
   `name` varchar(255) DEFAULT NULL,
   `number` bigint(20) NOT NULL,
   `price` double NOT NULL,
   `category_id` bigint(20) NOT NULL,
-  `phone_id` bigint(20) DEFAULT NULL
+  `phonename` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Đang đổ dữ liệu cho bảng `product`
 --
 
-INSERT INTO `product` (`id`, `des`, `imgurl`, `name`, `number`, `price`, `category_id`, `phone_id`) VALUES
-(1, 'Tai nghe bluetooth Baseus Encok WM01 Plus có độ hoàn thiện cao với những đường bo cong mềm mại tạo cảm giác cực kỳ dễ chịu khi sử dụng. Bạn sẽ không còn cảm giác khó chịu khi đeo tai nghe trong thời gian dài<br>\r\nTrọng lượng 32.5g, dock sạc là cổng cắm Type C cùng đèn báo, màn hình thông minh giúp người dùng có thể xác định được liệu dock đã được kết nối sạc hay chưa và tuổi thọ pin tai nghe bên trái, phải, dung lượng pin còn lại trong dock sạc<br>\r\nMàng loa hợp chất PU có độ đàn hồi cao, cho âm bass dày và treble tốt.. Bluetooth V5.0\r\nTai nghe Baseus Encok WM01 Plus có thể sử dụng tới 5 tiếng đồng hồ với thời gian chờ lên đến 250h. Hộp sạc đi kèm có dung lượng đến 300mAh giúp người dùng có thể dễ dàng nạp pin lại đến 5 lần liên tục. Thời gian sạc chỉ 1.5h<br>\r\nCông nghệ Noise Cancelling giảm tiếng ổn chủ động và tích hợp tất cả thiết bị và hệ điều hành Siri, Google, …', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'Tai nghe bluetooth Baseus Encok WM01 Plus', 80, 100000, 1, 1),
-(2, 'tai nghe 2', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 2', 80, 100000, 1, 2),
-(3, 'sac 1', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'sac 1', 90, 100000, 2, 1),
-(4, 'sac 2', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'sac 2', 100, 100000, 2, 2),
-(5, NULL, 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'man hinh 1', 96, 100000, 3, 1),
-(6, 'pin 1', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'pin 1', 0, 100000, 4, 2),
-(7, NULL, 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 3', 99, 100000, 1, 1),
-(8, 'tai nghe 4', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 4', 29, 100000, 1, 2);
+INSERT INTO `product` (`id`, `des`, `imgurl`, `name`, `number`, `price`, `category_id`, `phonename`) VALUES
+(1, '<p>Tai nghe bluetooth Baseus Encok WM01 Plus c&oacute; độ ho&agrave;n thiện cao với những đường bo cong mềm mại tạo cảm gi&aacute;c cực kỳ dễ chịu khi sử dụng. Bạn sẽ kh&ocirc;ng c&ograve;n cảm gi&aacute;c kh&oacute; chịu khi đeo tai nghe trong thời gian d&agrave;i<br /> Trọng lượng 32.5g, dock sạc l&agrave; cổng cắm Type C c&ugrave;ng đ&egrave;n b&aacute;o, m&agrave;n h&igrave;nh th&ocirc;ng minh gi&uacute;p người d&ugrave;ng c&oacute; thể x&aacute;c định được liệu dock đ&atilde; được kết nối sạc hay chưa v&agrave; tuổi thọ pin tai nghe b&ecirc;n tr&aacute;i, phải, dung lượng pin c&ograve;n lại trong dock sạc<br /> M&agrave;ng loa hợp chất PU c&oacute; độ đ&agrave;n hồi cao, cho &acirc;m bass d&agrave;y v&agrave; treble tốt.. Bluetooth V5.0 Tai nghe Baseus Encok WM01 Plus c&oacute; thể sử dụng tới 5 tiếng đồng hồ với thời gian chờ l&ecirc;n đến 250h. Hộp sạc đi k&egrave;m c&oacute; dung lượng đến 300mAh gi&uacute;p người d&ugrave;ng c&oacute; thể dễ d&agrave;ng nạp pin lại đến 5 lần li&ecirc;n tục. Thời gian sạc chỉ 1.5h<br /> C&ocirc;ng nghệ Noise Cancelling giảm tiếng ổn chủ động v&agrave; t&iacute;ch hợp tất cả thiết bị v&agrave; hệ điều h&agrave;nh Siri, Google, &hellip;</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937', 'Tai nghe bluetooth Baseus Encok WM01 Plus', 78, 100000, 1, 'iPhone 11,iPhone 12,iPhone 13,iPhone 14,iPhone 15,iPhone 7,iPhone 8,Samsung Galaxy A53,Samsung Galaxy M53,Samsung Galaxy S21,Samsung Galaxy S22,'),
+(2, '<p>tai nghe 2</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 2', 78, 100000, 1, 'iPhone 11,iPhone 12,iPhone 13,iPhone 14,iPhone 15,iPhone 7,iPhone 8,Samsung Galaxy A53,Samsung Galaxy M53,Samsung Galaxy S21,Samsung Galaxy S22,'),
+(3, '<p>sac 1</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'sac 1', 90, 100000, 2, 'iPhone 11,iPhone 12,iPhone 13,iPhone 14,iPhone 15,iPhone 7,iPhone 8,'),
+(4, '<p>sac 2</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'sac 2', 100, 100000, 2, 'Samsung Galaxy A53,Samsung Galaxy M53,Samsung Galaxy S21,Samsung Galaxy S22,'),
+(6, '<p>pin 1</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'pin 1', 0, 100000, 4, 'Samsung Galaxy S21,Samsung Galaxy S22,'),
+(7, '', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 3', 98, 100000, 1, 'iPhone 11,iPhone 12,iPhone 13,iPhone 14,iPhone 15,iPhone 7,iPhone 8,Samsung Galaxy A53,Samsung Galaxy M53,Samsung Galaxy S21,Samsung Galaxy S22,'),
+(8, '<p>tai nghe 4</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/imgs%2Fproduct.jpg?alt=media&token=2d2b080a-1444-4b1d-98b9-bb06608c3937&_gl=1*fc4de8*_ga*MTYwMDg2MTQ5NS4xNjk0NTMwMTEw*_ga_CW55HF8NVT*MTY5NjI1MjQ1NC4zLjEuMTY5NjI1MjQ4MS4zMy4wLjA.', 'tai nghe 4', 29, 100000, 1, 'iPhone 11,iPhone 12,iPhone 13,iPhone 14,iPhone 15,iPhone 7,iPhone 8,Samsung Galaxy A53,Samsung Galaxy M53,Samsung Galaxy S21,Samsung Galaxy S22,'),
+(9, '<p><span style=\"color: #202124; font-family: consolas, \'lucida console\', \'courier new\', monospace; font-size: 12px; white-space-collapse: preserve;\">PIN PISEN cho c&aacute;c d&ograve;ng m&aacute;y 5s/5se/6/6s/6plus/6splus/7/7plus/8/8plus/X/Xs/Xr/Xsmax/11/11Pro/11Promax</span></p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/bff1485c-b133-4da5-8079-27b548058049.jpg?alt=media&token=bff1485c-b133-4da5-8079-27b548058049.jpg', 'PIN PISEN cho các dòng máy iphone', 50, 600000, 4, 'iPhone 11,iPhone 7,iPhone 8,'),
+(10, '<p>op lung iphone 15pro max</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/3c679a8e-885b-4c7b-b36a-e22aaeeefc6d.jpg?alt=media&token=3c679a8e-885b-4c7b-b36a-e22aaeeefc6d.jpg', 'op lung iphone 15', 50, 20000, 5, 'iPhone 15,'),
+(19, '<p>abc</p>', 'https://firebasestorage.googleapis.com/v0/b/webshop-b4e27.appspot.com/o/58e0c9bc-ad9c-4444-959c-9c33f810ea0a.jpg?alt=media&token=58e0c9bc-ad9c-4444-959c-9c33f810ea0a.jpg', 'Màn hình samsung a53', 20, 450000, 3, 'Samsung Galaxy A53,');
 
 --
 -- Chỉ mục cho các bảng đã đổ
@@ -209,8 +221,7 @@ ALTER TABLE `phone`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`),
-  ADD KEY `FKtnch9j7bixc6rosy9fdje8ymx` (`phone_id`);
+  ADD KEY `FK1mtsbur82frn64de7balymq9s` (`category_id`);
 
 --
 -- AUTO_INCREMENT cho các bảng đã đổ
@@ -220,37 +231,37 @@ ALTER TABLE `product`
 -- AUTO_INCREMENT cho bảng `bill`
 --
 ALTER TABLE `bill`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT cho bảng `category`
 --
 ALTER TABLE `category`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT cho bảng `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT cho bảng `order_product`
 --
 ALTER TABLE `order_product`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT cho bảng `phone`
 --
 ALTER TABLE `phone`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT cho bảng `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Các ràng buộc cho các bảng đã đổ
@@ -273,8 +284,7 @@ ALTER TABLE `order_product`
 -- Các ràng buộc cho bảng `product`
 --
 ALTER TABLE `product`
-  ADD CONSTRAINT `FK1mtsbur82frn64de7balymq9s` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`),
-  ADD CONSTRAINT `FKtnch9j7bixc6rosy9fdje8ymx` FOREIGN KEY (`phone_id`) REFERENCES `phone` (`id`);
+  ADD CONSTRAINT `FK1mtsbur82frn64de7balymq9s` FOREIGN KEY (`category_id`) REFERENCES `category` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

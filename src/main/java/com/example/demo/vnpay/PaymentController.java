@@ -33,8 +33,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
-//@RestController
-//@RequestMapping("/api/payment")
+
 public class PaymentController {
 	
 	@Autowired
@@ -49,7 +48,7 @@ public class PaymentController {
 	@Autowired
 	CustomerRepository customerrepository;
 	
-	@PostMapping("/create_payment")
+	@RequestMapping("/create_payment")
 	public String createPayment(HttpServletRequest request) throws UnsupportedEncodingException{
 		
 		HttpSession session = request.getSession() ;
@@ -135,6 +134,7 @@ public class PaymentController {
 			newbill.setCustomer(c.get());
 			newbill.setPaymentStatus("Đã thanh toán");
 			newbill.setShipmentPlace((String)session.getAttribute("shipmentplace"));
+			newbill.setShipmentStatus("Chưa giao");
 			newbill.setCreatedAt(LocalDateTime.now());
 			newbill.setPaymentAt(LocalDateTime.now());
 			double amount=Integer.parseInt(request.getParameter("vnp_Amount"));

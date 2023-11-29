@@ -19,7 +19,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
 	Page<Product> findByNameContaining(String name, Pageable pageable);
 
-	Page<Product> findByPhoneId(long id, Pageable pageable );
+	Page<Product> findByPhonenameContaining(String name, Pageable pageable );
 	
 }
 

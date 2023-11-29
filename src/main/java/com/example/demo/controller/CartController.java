@@ -1,7 +1,9 @@
 package com.example.demo.controller;
 
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,7 +11,10 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.example.demo.model.Bill;
+import com.example.demo.model.Customer;
 import com.example.demo.model.Order;
 import com.example.demo.model.Product;
 import com.example.demo.repository.BillRepository;
@@ -26,14 +31,14 @@ public class CartController {
 	@Autowired
 	ProductRepository productrepository;
 	
-//	@Autowired
-//	BillRepository billrepository;
+	@Autowired
+	BillRepository billrepository;
 	
-//	@Autowired
-//	OrderRepository orderrepository;
+	@Autowired
+	OrderRepository orderrepository;
 	
-//	@Autowired
-//	CustomerRepository customerrepository;
+	@Autowired
+	CustomerRepository customerrepository;
 	
 	@RequestMapping("/cart")
 	public String showCart(ModelMap model) {
@@ -140,4 +145,47 @@ public class CartController {
 		return "redirect:/cart";
 	}
 	
+	@PostMapping("/cart/order")
+	public String order(ModelMap model,HttpServletRequest request,RedirectAttributes atts) {
+		if(request.getParameter("pay").equals("Offline")) {
+			HttpSession session = request.getSession() ;
+			List<Order> listorder = (List<Order>) session.getAttribute("listorder");
+			Customer customer=(Customer) session.getAttribute("customer");
+			
+			Bill newbill= new Bill();
+			Optional<Customer> c = customerrepository.findById(customer.getId());
+			newbill.setCustomer(c.get());
+			newbill.setPaymentStatus("Chưa thanh toán");
+			newbill.setShipmentPlace((String)request.getParameter("shipmentplace"));
+			newbill.setShipmentStatus("Chưa giao");
+			newbill.setCreatedAt(LocalDateTime.now());
+			newbill.setPaymentAt(null);
+			double tongtien=0;
+			for(Order x: listorder) {
+				tongtien+=x.getProduct().getPrice()*x.getNumberProduct();
+			}
+			newbill.setTotalPrice(tongtien);
+			newbill=billrepository.save(newbill);
+		
+			for(Order x: listorder) {
+				Order neworder=new Order();
+				neworder.setBill(newbill);
+				neworder.setProduct(productrepository.findById(x.getProduct().getId()));
+				neworder.setNumberProduct(x.getNumberProduct());
+				orderrepository.save(neworder);
+			}
+			
+			for(Order x: listorder) {
+				Product product= productrepository.findById(x.getProduct().getId());
+				product.setNumber(product.getNumber()-x.getNumberProduct());
+				productrepository.save(product);
+			}
+			session.removeAttribute("listorder");
+			atts.addFlashAttribute("mess", "Đặt hàng thành công.");
+			return "redirect:/cart";
+		}
+		else {
+			return "redirect:/create_payment";
+		}
+	}
 }

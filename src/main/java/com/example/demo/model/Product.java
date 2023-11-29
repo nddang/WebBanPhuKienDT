@@ -26,7 +26,7 @@ public class Product {
 	
 	private double price;
 	
-	@Column(length = 1000)
+	@Column(length = 2000)
 	private String des;
 	
 	private String imgurl;
@@ -34,14 +34,12 @@ public class Product {
 	@OneToMany(mappedBy = "product",cascade =  CascadeType.ALL )
 	private List < Order > order;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
     @JoinColumn(name = "categoryId")
     private Category category;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "phoneId")
-    private Phone phone;
-
+	private String phonename;
+	
 	public long getId() {
 		return id;
 	}
@@ -106,12 +104,12 @@ public class Product {
 		this.order = order;
 	}
 
-	public Phone getPhone() {
-		return phone;
+	public String getPhonename() {
+		return phonename;
 	}
 
-	public void setPhone(Phone phone) {
-		this.phone = phone;
+	public void setPhonename(String phonename) {
+		this.phonename = phonename;
 	}
 	
 }
