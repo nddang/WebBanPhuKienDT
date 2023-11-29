@@ -1,4 +1,4 @@
-package com.example.demo.firebase;
+ypackage com.example.demo.firebase;
 
 
 import com.google.auth.oauth2.GoogleCredentials;
@@ -59,7 +59,7 @@ public class FirebaseFileService {
         
 		storage.create(blobInfo, file.getInputStream());
 		
-        return "bff1485c-b133-4da5-8079-27b548058049.jpg";
+        return key;
     }
 	
     private String generateFileName(String originalFileName) {
