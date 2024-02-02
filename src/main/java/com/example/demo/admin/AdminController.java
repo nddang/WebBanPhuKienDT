@@ -2,6 +2,7 @@ package com.example.demo.admin;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -19,16 +20,12 @@ public class AdminController {
         }
 		return "redirect:/admin/product/list";
 	}
-	
-	@RequestMapping("/admin/login")
-	public String loginPage(ModelMap model,HttpServletRequest request) {
-		return "admin/login";
-	}
+
 	
 	@PostMapping("/admin/login")
 	public String login(ModelMap model,HttpServletRequest request){
 		if(request.getParameter("username").equals("admin") && request.getParameter("password").equals("12345")) {
-			HttpSession session = request.getSession() ;
+			HttpSession session = request.getSession();
 			session.setAttribute("admin", "admin login success");
 			return "redirect:/admin/home";
 		}
