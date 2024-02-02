@@ -42,10 +42,10 @@ public class ProductManagementController {
 	
 	@RequestMapping("/admin/product/list")
 	public String showListProduct(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession() ;
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
+//		HttpSession session = request.getSession() ;
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
 		model.addAttribute("content", "product/list");
 		Page<Product> pageListP=productrepository.findAll(PageRequest.of(0, 6));
 		model.addAttribute("listP", pageListP.getContent());
@@ -56,10 +56,10 @@ public class ProductManagementController {
 	
 	@RequestMapping("/admin/product/list/page/{pagenumber}")
 	public String homePage(ModelMap model,HttpServletRequest request,@PathVariable("pagenumber") int pagenumber) {
-		HttpSession session = request.getSession() ;
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
+//		HttpSession session = request.getSession() ;
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
 		model.addAttribute("content", "product/list");
 		Page<Product> pageListP=productrepository.findAll(PageRequest.of(pagenumber-1, 6));
 		model.addAttribute("listP", pageListP.getContent());
@@ -70,10 +70,10 @@ public class ProductManagementController {
 	
 	@RequestMapping("/admin/product/add")
 	public String showAddProduct(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession() ;
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
+//		HttpSession session = request.getSession() ;
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
 		model.addAttribute("content", "product/add");
 		List<Category> listCategory= categoryrepository.findAll();
         model.addAttribute("listC", listCategory);
@@ -85,10 +85,10 @@ public class ProductManagementController {
 	
 	@RequestMapping("/admin/product/update/{id}")
 	public String showUpdateProduct(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
-		HttpSession session = request.getSession() ;
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
+//		HttpSession session = request.getSession() ;
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
 		model.addAttribute("content", "product/update");
 		Product product= productrepository.findById(id);
 		String phonename=product.getPhonename();

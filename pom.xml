@@ -103,6 +103,7 @@
 		<dependency>
 			 <groupId>io.grpc</groupId>
 			 <artifactId>grpc-netty-shaded</artifactId>
+			<version>1.21.0</version>
 		</dependency>
 
 	</dependencies>
@@ -112,7 +113,15 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
-		</plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>16</source>
+                    <target>16</target>
+                </configuration>
+            </plugin>
+        </plugins>
 	</build>
 
 </project>

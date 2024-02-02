@@ -38,34 +38,34 @@ public class BillController {
 	public String showHistory(ModelMap model,HttpServletRequest request) {
 		HttpSession session = request.getSession() ;
 		model.addAttribute("content","history");
-        if(session.getAttribute("customer")==null) {
-        	return "home";
-        }
-        else {
-        	
+//        if(session.getAttribute("customer")==null) {
+//        	return "home";
+//        }
+//        else {
+//
         	Customer customer=(Customer) session.getAttribute("customer");
         	List<Bill> listbill=billrepository.findByCustomerIdOrderByCreatedAtDesc(customer.getId());
         	if(listbill.size()>0)session.setAttribute("listbill", listbill);
         	
         	return "home";
-        }
+//        }
         
 	}   
 	@RequestMapping("/history/detail/{id}")
 	public String showHistoryDetail(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
 		HttpSession session = request.getSession() ;
 		model.addAttribute("content","detailhistory");
-        if(session.getAttribute("customer")==null) {
-        	return "home";
-        }
-        else {
+//        if(session.getAttribute("customer")==null) {
+//        	return "home";
+//        }
+//        else {
         	
         	Bill bill=billrepository.findById(id);
         	List<Order> listorder=orderrepository.findByBillId(id);
         	model.addAttribute("bill", bill);
         	model.addAttribute("listorder", listorder);
         	return "home";
-        }
+//        }
         
 	}   
 }

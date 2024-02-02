@@ -49,10 +49,10 @@ public class CartController {
 	@PostMapping("/cart/add/{id}")
 	public String addToCart(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
 		HttpSession session = request.getSession() ;
-        if(session.getAttribute("customer")==null) {
-        	return "redirect:/cart";
-        }
-        else {
+//        if(session.getAttribute("customer")==null) {
+//        	return "redirect:/cart";
+//        }
+//        else {
         	model.addAttribute("content","cart");
         	Product product= productrepository.findById(id);
         	if(session.getAttribute("listorder")==null) {
@@ -84,7 +84,7 @@ public class CartController {
         		session.setAttribute("listorder", listorder);
         	}
         	return "redirect:/cart";
-        }
+//        }
 	}   
 	
 	@PostMapping("/cart/plus/{id}")

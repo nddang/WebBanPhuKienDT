@@ -39,36 +39,36 @@ public class BillManagementController {
 	
 	@RequestMapping("/admin/bill/list")
 	public String showListBill(ModelMap model,HttpServletRequest request) {
-		HttpSession session = request.getSession() ;
-		model.addAttribute("content","bill/list");
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
-        else {
+//		HttpSession session = request.getSession() ;
+//		model.addAttribute("content","bill/list");
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
+//        else {
         	Sort sort = Sort.by(Sort.Direction.DESC, "createdAt");
         	List<Bill> listbill=billrepository.findAll(sort);
         	
         	model.addAttribute("listbill", listbill);
         	
         	return "admin/index";
-        }
+//        }
         
 	}   
 	@RequestMapping("/admin/bill/update/{id}")
 	public String showBillDetail(ModelMap model,HttpServletRequest request,@PathVariable("id") long id) {
-		HttpSession session = request.getSession() ;
-		model.addAttribute("content","bill/update");
-        if(session.getAttribute("admin")==null) {
-        	return "redirect:/admin/login";
-        }
-        else {
-        	
+//		HttpSession session = request.getSession() ;
+//		model.addAttribute("content","bill/update");
+//        if(session.getAttribute("admin")==null) {
+//        	return "redirect:/admin/login";
+//        }
+//        else {
+//
         	Bill bill=billrepository.findById(id);
         	List<Order> listorder=orderrepository.findByBillId(id);
         	model.addAttribute("bill", bill);
         	model.addAttribute("listorder", listorder);
         	return "admin/index";
-        }
+//        }
         
 	}  
 	
