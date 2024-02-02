@@ -3,6 +3,7 @@ package com.example.demo.model;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import lombok.Data;
 import org.springframework.data.annotation.CreatedDate;
 
 import jakarta.persistence.CascadeType;
@@ -17,6 +18,7 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Temporal;
 import jakarta.persistence.TemporalType;
 
+@Data
 @Entity
 @Table(name="bill")
 public class Bill {
@@ -45,78 +47,6 @@ public class Bill {
 	@OneToMany(mappedBy = "bill",cascade =  CascadeType.ALL )
 	private List < Order > order;
 
-	private double totalPrice;	
-
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public Customer getCustomer() {
-		return customer;
-	}
-
-	public void setCustomer(Customer customer) {
-		this.customer = customer;
-	}
-
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-
-	public List<Order> getOrder() {
-		return order;
-	}
-
-	public void setOrder(List<Order> order) {
-		this.order = order;
-	}
-
-	public String getPaymentStatus() {
-		return paymentStatus;
-	}
-
-	public void setPaymentStatus(String paymentStatus) {
-		this.paymentStatus = paymentStatus;
-	}
-
-	public LocalDateTime getPaymentAt() {
-		return paymentAt;
-	}
-
-	public void setPaymentAt(LocalDateTime paymentAt) {
-		this.paymentAt = paymentAt;
-	}
-
-	public String getShipmentPlace() {
-		return shipmentPlace;
-	}
-
-	public void setShipmentPlace(String shipmentPlace) {
-		this.shipmentPlace = shipmentPlace;
-	}
-
-	public String getShipmentStatus() {
-		return shipmentStatus;
-	}
-
-	public void setShipmentStatus(String shipmentStatus) {
-		this.shipmentStatus = shipmentStatus;
-	}
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+	private double totalPrice;
 	
 }

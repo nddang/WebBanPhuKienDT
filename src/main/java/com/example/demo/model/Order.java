@@ -7,7 +7,9 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import lombok.Data;
 
+@Data
 @Entity
 @Table(name="orderProduct")
 public class Order {
@@ -25,36 +27,4 @@ public class Order {
 	
 	private long numberProduct;
 
-	public long getId() {
-		return id;
-	}
-
-	public void setId(long id) {
-		this.id = id;
-	}
-
-	public Bill getBill() {
-		return bill;
-	}
-
-	public void setBill(Bill bill) {
-		this.bill = bill;
-	}
-
-	public Product getProduct() {
-		return product;
-	}
-
-	public void setProduct(Product product) {
-		this.product = product;
-	}
-
-	public long getNumberProduct() {
-		return numberProduct;
-	}
-
-	public void setNumberProduct(long numberProduct) {
-		this.numberProduct = numberProduct;
-	}
-	
 }
